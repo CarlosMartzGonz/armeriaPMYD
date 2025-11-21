@@ -1,0 +1,93 @@
+<?xml version ="1.0" encoding ="utf-8" ?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width ="match_parent"
+    android:layout_height ="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal ="16dp"
+    android:layout_marginVertical ="8dp"
+    app:cardCornerRadius ="30dp"
+    app:cardElevation ="10dp"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width ="match_parent"
+        android:layout_height ="300dp"
+        >
+        <ImageView
+            android:id="@+id/iv_hotel"
+            android:layout_width ="match_parent"
+            android:layout_height ="150dp"
+            app:layout_constraintStart_toStartOf ="parent"
+            app:layout_constraintTop_toTopOf ="parent"
+            tools:background ="@color/black" />
+
+
+        <TextView
+            android:id="@+id/txtview_name"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:maxLength="50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_hotel"
+            tools:text="wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww" />
+
+        <TextView
+            android:id="@+id/txtview_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/purple_700"
+            android:textSize="18dp"
+            android:maxLength="25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtview_name"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Categoria" />
+
+        <TextView
+            android:id="@+id/costeEuro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:textColor="@color/purple_500"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.934"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_hotel"
+            tools:text="100000€" />
+
+        <ImageView
+            android:id="@+id/btn_edit"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/edit_square"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtview_categoria" />
+
+        <ImageView
+            android:id="@+id/btn_delete"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/delete_trash"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/costeEuro"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtview_categoria"
+            app:layout_constraintVertical_bias="0.52" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
