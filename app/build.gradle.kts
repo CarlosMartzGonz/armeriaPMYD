@@ -1,20 +1,26 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
 
 android {
-    namespace = "com.example.tiendaarmas"
+    namespace = "com.example.armeria"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.tiendaarmas"
+        applicationId = "com.example.armeria"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     buildTypes {
@@ -36,7 +42,8 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    implementation("com.google.android.material:material:1.9.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

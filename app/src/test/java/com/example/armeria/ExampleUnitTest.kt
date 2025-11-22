@@ -1,4 +1,4 @@
-package com.example.tiendaarmas
+package com.example.armeria
 
 import org.junit.Test
 
