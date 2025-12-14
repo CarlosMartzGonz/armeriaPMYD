@@ -1,12 +1,14 @@
 package com.example.armeria
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.armeria.controller.Controller
 import com.example.armeria.databinding.ActivityMainBinding
+import com.example.armeria.dialogs.AddCardFragment
+import com.example.armeria.dialogs.EditCardFragment
+import com.example.armeria.models.Arma
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AddCardFragment.AddCardListener, EditCardFragment.EditCardListener {
     lateinit var binding: ActivityMainBinding
     private lateinit var controller: Controller
 
@@ -16,10 +18,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         controller = Controller(this, binding)
-        controller.init()
+        controller.init { arma ->
+            val dialog = EditCardFragment.newInstance(arma)
+            dialog.show(supportFragmentManager, "EditCardFragment")
+        }
 
         binding.floatingBtnAdd.setOnClickListener {
-            Toast.makeText(this, "Añadir nueva arma", Toast.LENGTH_SHORT).show()
+            val dialog = AddCardFragment()
+            dialog.show(supportFragmentManager, "AddCardFragment")
         }
+    }
+
+    override fun onCardAdded(arma: Arma) {
+        controller.addArma(arma)
+    }
+
+    override fun onCardEdited(arma: Arma) {
+        controller.updateArma(arma)
     }
 }

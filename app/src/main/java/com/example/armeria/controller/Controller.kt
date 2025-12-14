@@ -13,19 +13,30 @@ class Controller(private val context: Context, private val binding: ActivityMain
     private var listaDeArmas: MutableList<Arma> = mutableListOf()
     private lateinit var adapter: AdapterArma
 
-    fun init() {
+    fun init(onEditClick: (Arma) -> Unit) {
         listaDeArmas = DaoArmas.myDao.getDataArmas().toMutableList()
         adapter = AdapterArma(
             armas = listaDeArmas,
-            onEditClick = { arma ->
-                Toast.makeText(context, "Editar: ${arma.nombre}", Toast.LENGTH_SHORT).show()
-            },
+            onEditClick = onEditClick,
             onDeleteClick = { arma ->
                 deleteArma(arma)
             }
         )
         binding.myRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.myRecyclerView.adapter = adapter
+    }
+
+    fun addArma(arma: Arma) {
+        listaDeArmas.add(arma)
+        adapter.notifyItemInserted(listaDeArmas.size - 1)
+    }
+
+    fun updateArma(updatedArma: Arma) {
+        val position = listaDeArmas.indexOfFirst { it.nombre == updatedArma.nombre }
+        if (position != -1) {
+            listaDeArmas[position] = updatedArma
+            adapter.notifyItemChanged(position)
+        }
     }
 
     private fun deleteArma(arma: Arma) {
