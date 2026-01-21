@@ -7,13 +7,9 @@ import com.example.armeria.databinding.ItemArmaBinding
 import com.example.armeria.models.Arma
 
 class ViewHArma(view: View) : RecyclerView.ViewHolder(view) {
-    private val binding: ItemArmaBinding
+    private val binding: ItemArmaBinding = ItemArmaBinding.bind(view)
 
-    init {
-        binding = ItemArmaBinding.bind(view)
-    }
-
-    fun render(arma: Arma, onEditClick: (Arma) -> Unit, onDeleteClick: (Arma) -> Unit) {
+    fun render(arma: Arma, onEditClick: (Arma) -> Unit, onDeleteClick: (Arma) -> Unit, onItemClick: (Int) -> Unit) {
         binding.txtviewName.text = arma.nombre
         binding.txtviewCategoria.text = arma.categoria
         binding.costeEuro.text = arma.coste
@@ -25,5 +21,6 @@ class ViewHArma(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.btnEdit.setOnClickListener { onEditClick(arma) }
         binding.btnDelete.setOnClickListener { onDeleteClick(arma) }
+        itemView.setOnClickListener { onItemClick(adapterPosition) }
     }
 }

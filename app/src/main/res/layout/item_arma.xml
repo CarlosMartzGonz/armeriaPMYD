@@ -1,100 +1,98 @@
-<?xml version ="1.0" encoding ="utf-8" ?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width ="match_parent"
-    android:layout_height ="wrap_content"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal ="16dp"
-    android:layout_marginVertical ="8dp"
-    app:cardCornerRadius ="30dp"
-    app:cardElevation ="10dp"
-    android:backgroundTint="@color/white"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    android:backgroundTint="@color/white">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width ="match_parent"
-        android:layout_height ="300dp"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@color/btn_secondary">
+
         <ImageView
             android:id="@+id/iv_arma"
-            android:layout_width ="match_parent"
-            android:layout_height ="150dp"
-            app:layout_constraintStart_toStartOf ="parent"
-            app:layout_constraintTop_toTopOf ="parent"
-            tools:background ="@color/black" />
-
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/white" />
 
         <TextView
             android:id="@+id/txtview_name"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="25dp"
+            android:layout_marginTop="12dp"
+            android:textSize="25sp"
             android:textStyle="bold"
-            android:maxLength="25"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:textColor="@color/white"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/iv_arma"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_arma"
-            tools:text="Nombre" />
+            app:layout_constraintEnd_toStartOf="@id/acciones_layout"
+            tools:text="Nombre del arma" />
 
         <TextView
             android:id="@+id/txtview_categoria"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
+            android:textSize="19sp"
             android:textColor="@color/gray"
-            android:textSize="18dp"
-            android:maxLength="25"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/txtview_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtview_name"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="Categoria" />
+            app:layout_constraintEnd_toStartOf="@id/acciones_layout"
+            tools:text="Categoría" />
 
         <TextView
             android:id="@+id/costeEuro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:textColor="@color/black"
-            android:textSize="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="10dp"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent"
+            app:layout_constraintTop_toBottomOf="@id/txtview_categoria"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="100.000 €" />
+
+        <LinearLayout
+            android:id="@+id/acciones_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.934"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_arma"
-            tools:text="100000€" />
-
-        <ImageView
-            android:id="@+id/btn_edit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/edit_square"
-            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtview_categoria"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@id/txtview_categoria">
 
-        <ImageView
-            android:id="@+id/btn_delete"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/delete_trash"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/costeEuro"
-            app:layout_constraintHorizontal_bias="0.559"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtview_categoria"
-            app:layout_constraintVertical_bias="0.0" />
+            <ImageView
+                android:id="@+id/btn_edit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:src="@drawable/edit_square" />
+
+            <ImageView
+                android:id="@+id/btn_delete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="12dp"
+                android:padding="10dp"
+                android:src="@drawable/delete_trash" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

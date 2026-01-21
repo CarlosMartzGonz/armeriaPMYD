@@ -1,6 +1,5 @@
 package com.example.armeria.dialogs
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,14 +14,9 @@ class EditCardFragment : DialogFragment() {
         fun onCardEdited(arma: Arma)
     }
 
-    private lateinit var listener: EditCardListener
+    private var listener: EditCardListener? = null
     private lateinit var arma: Arma
     private lateinit var binding: FragmentEditBinding
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = context as EditCardListener
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +29,8 @@ class EditCardFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        listener = parentFragment as? EditCardListener ?: activity as? EditCardListener
 
         arguments?.let {
             val nombre = it.getString("nombre", "")
@@ -56,7 +52,7 @@ class EditCardFragment : DialogFragment() {
                 binding.editTextCost.text.toString(),
                 binding.editTextImage.text.toString()
             )
-            listener.onCardEdited(updatedArma)
+            listener?.onCardEdited(updatedArma)
             dismiss()
         }
 

@@ -1,6 +1,5 @@
 package com.example.armeria.dialogs
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +14,8 @@ class AddCardFragment : DialogFragment() {
         fun onCardAdded(arma: Arma)
     }
 
-    private lateinit var listener: AddCardListener
+    private var listener: AddCardListener? = null
     private lateinit var binding: FragmentAddBinding
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        listener = context as AddCardListener
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +28,8 @@ class AddCardFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        listener = parentFragment as? AddCardListener ?: activity as? AddCardListener
 
         binding.buttonAdd.setOnClickListener {
             val name = binding.editTextName.text.toString()
@@ -43,7 +39,7 @@ class AddCardFragment : DialogFragment() {
 
             if (name.isNotEmpty() && category.isNotEmpty() && cost.isNotEmpty() && image.isNotEmpty()) {
                 val newArma = Arma(name, category, cost, image)
-                listener.onCardAdded(newArma)
+                listener?.onCardAdded(newArma)
                 dismiss()
             }
         }

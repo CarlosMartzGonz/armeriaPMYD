@@ -9,7 +9,8 @@ import com.example.armeria.models.Arma
 class AdapterArma(
     private var armas: MutableList<Arma>,
     private val onEditClick: (Arma) -> Unit,
-    private val onDeleteClick: (Arma) -> Unit
+    private val onDeleteClick: (Arma) -> Unit,
+    private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<ViewHArma>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHArma {
@@ -18,7 +19,7 @@ class AdapterArma(
     }
 
     override fun onBindViewHolder(holder: ViewHArma, position: Int) {
-        holder.render(armas[position], onEditClick, onDeleteClick)
+        holder.render(armas[position], onEditClick, onDeleteClick, onItemClick)
     }
 
     override fun getItemCount(): Int = armas.size

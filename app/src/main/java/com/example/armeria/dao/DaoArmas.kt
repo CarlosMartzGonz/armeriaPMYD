@@ -2,7 +2,7 @@ package com.example.armeria.dao
 
 import com.example.armeria.interfaces.InterfaceDao
 import com.example.armeria.models.Arma
-import com.example.armeria.objects_models.Repository
+import com.example.armeria.objects_models.ArmasRepository
 
 class DaoArmas private constructor(): InterfaceDao {
     companion object{
@@ -11,6 +11,6 @@ class DaoArmas private constructor(): InterfaceDao {
         }
     }
 
-    override fun getDataArmas(): List<Arma> = Repository.listArmas
+    override fun getDataArmas(): List<Arma> = ArmasRepository.listArmas
 
 }

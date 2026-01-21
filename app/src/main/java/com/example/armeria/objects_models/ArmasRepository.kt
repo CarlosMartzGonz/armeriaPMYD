@@ -3,7 +3,7 @@ package com.example.armeria.objects_models
 import com.example.armeria.models.Arma
 
 
-object Repository : ArmaRepository {
+object ArmasRepository : ArmaRepository {
     val listArmas: List<Arma> = listOf(
         Arma(
             "Escopet Bereta",
