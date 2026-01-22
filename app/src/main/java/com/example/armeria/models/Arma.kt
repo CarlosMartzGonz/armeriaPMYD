@@ -5,9 +5,9 @@ class Arma(
     var categoria: String,
     var coste: String,
     var imagen: String,
-    var caracteristicas: String = ""
+    var informacion: String = ""
 ) {
     override fun toString(): String {
-        return "Arma(nombre='$nombre', categoria='$categoria', coste='$coste', imagen='$imagen', caracteristicas='$caracteristicas')"
+        return "Arma(nombre='$nombre', categoria='$categoria', coste='$coste', imagen='$imagen', informacion='$informacion')"
     }
 }

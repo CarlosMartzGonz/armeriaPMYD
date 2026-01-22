@@ -30,12 +30,13 @@ class DetailFragment : Fragment() {
             binding.tvDetailNombre.text = it.nombre
             binding.tvDetailCategoria.text = it.categoria
             binding.tvDetailCoste.text = it.coste
-            binding.tvDetailCaracteristicas.text = it.caracteristicas
+            binding.tvDetailCaracteristicas.text = it.informacion
 
             Glide.with(this)
                 .load(it.imagen)
                 .into(binding.ivDetail)
         }
+
     }
 
     override fun onDestroyView() {

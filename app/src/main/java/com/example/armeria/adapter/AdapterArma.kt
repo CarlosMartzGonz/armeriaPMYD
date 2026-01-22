@@ -23,4 +23,10 @@ class AdapterArma(
     }
 
     override fun getItemCount(): Int = armas.size
+
+    fun actualizarLista(nuevaLista: MutableList<Arma>) {
+        armas.clear()
+        armas.addAll(nuevaLista)
+        notifyDataSetChanged()
+    }
 }
