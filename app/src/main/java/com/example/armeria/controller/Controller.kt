@@ -10,17 +10,14 @@ import com.example.armeria.models.Arma
 
 class Controller(private val context: Context, private val recyclerView: RecyclerView) {
 
-    private var listaDeArmas: MutableList<Arma> = mutableListOf()
     private lateinit var adapter: AdapterArma
 
-    fun init(onEditClick: (Arma) -> Unit, onItemClick: (Int) -> Unit) {
-        listaDeArmas = DaoArmas.myDao.getDataArmas().toMutableList()
+    fun init(onEditClick: (Arma) -> Unit, onDeleteClick: (Arma) -> Unit, onItemClick: (Int) -> Unit) {
+        val listaDeArmas = DaoArmas.myDao.getDataArmas().toMutableList()
         adapter = AdapterArma(
             armas = listaDeArmas,
             onEditClick = onEditClick,
-            onDeleteClick = { arma ->
-                deleteArma(arma)
-            },
+            onDeleteClick = onDeleteClick,
             onItemClick = onItemClick
         )
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -28,24 +25,36 @@ class Controller(private val context: Context, private val recyclerView: Recycle
     }
 
     fun addArma(arma: Arma) {
-        listaDeArmas.add(arma)
-        adapter.notifyItemInserted(listaDeArmas.size - 1)
+        DaoArmas.myDao.addArma(arma)
+        actualizarAdapter()
+        recyclerView.smoothScrollToPosition(adapter.itemCount - 1)
     }
 
-    fun updateArma(updatedArma: Arma) {
-        val position = listaDeArmas.indexOfFirst { it.nombre == updatedArma.nombre }
-        if (position != -1) {
-            listaDeArmas[position] = updatedArma
-            adapter.notifyItemChanged(position)
-        }
+    fun updateArma(position: Int, arma: Arma) {
+        DaoArmas.myDao.updateArma(position, arma)
+        actualizarAdapter()
     }
 
-    private fun deleteArma(arma: Arma) {
-        val position = listaDeArmas.indexOf(arma)
-        if (position != -1) {
-            listaDeArmas.removeAt(position)
-            adapter.notifyItemRemoved(position)
-            Toast.makeText(context, "${arma.nombre} eliminada", Toast.LENGTH_SHORT).show()
-        }
+    fun deleteArma(position: Int) {
+        DaoArmas.myDao.deleteArma(position)
+        actualizarAdapter()
+        Toast.makeText(context, "Arma eliminada", Toast.LENGTH_SHORT).show()
+    }
+
+    fun getArmaPosition(arma: Arma): Int {
+        return DaoArmas.myDao.getDataArmas().indexOf(arma)
+    }
+
+    fun getArmasCount(): Int {
+        return DaoArmas.myDao.getDataArmas().size
+    }
+
+    fun actualizarDatos() {
+        actualizarAdapter()
+    }
+
+    private fun actualizarAdapter() {
+        val nuevaLista = DaoArmas.myDao.getDataArmas().toMutableList()
+        adapter.actualizarLista(nuevaLista)
     }
 }

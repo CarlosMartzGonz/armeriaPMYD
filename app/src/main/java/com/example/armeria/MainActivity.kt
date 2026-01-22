@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -20,6 +22,7 @@ import com.example.armeria.objects_models.Session
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +32,46 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        binding.bottomNav.setupWithNavController(navController)
+        navController = navHostFragment.navController
+
+        binding.bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homeFragment -> {
+                    if (navController.currentDestination?.id != R.id.homeFragment) {
+                        navController.popBackStack(R.id.homeFragment, false)
+                    }
+                    true
+                }
+                R.id.profileFragment -> {
+                    navController.navigate(R.id.profileFragment)
+                    true
+                }
+                R.id.settingsFragment -> {
+                    navController.navigate(R.id.settingsFragment)
+                    true
+                }
+                else -> false
+            }
+        }
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.homeFragment, R.id.profileFragment, R.id.settingsFragment, R.id.aboutFragment),
+            setOf(R.id.homeFragment, R.id.profileFragment),
             binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment, R.id.profileFragment, R.id.settingsFragment -> {
+                    binding.bottomNav.visibility = View.VISIBLE
+                    binding.bottomNav.menu.findItem(destination.id)?.isChecked = true
+                }
+                else -> {
+                    binding.bottomNav.visibility = View.GONE
+                }
+            }
+        }
 
         val headerView = binding.navView.getHeaderView(0)
         val tvUser = headerView.findViewById<TextView>(R.id.tvUserHeader)
@@ -80,8 +114,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.nav_logout -> {
@@ -104,4 +136,10 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    fun navegarAlHome() {
+        if (::navController.isInitialized) {
+            navController.popBackStack(R.id.homeFragment, false)
+            binding.bottomNav.selectedItemId = R.id.homeFragment
+        }
+    }
 }

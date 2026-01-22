@@ -3,14 +3,17 @@
 
     <item
         android:id="@+id/homeFragment"
+        android:icon="@drawable/house"
         android:title="Inicio" />
 
     <item
         android:id="@+id/profileFragment"
+        android:icon="@drawable/profile"
         android:title="Perfil" />
 
     <item
         android:id="@+id/settingsFragment"
+        android:icon="@drawable/settings"
         android:title="Ajustes" />
 
 </menu>

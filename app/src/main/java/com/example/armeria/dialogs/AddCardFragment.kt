@@ -28,17 +28,20 @@ class AddCardFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         listener = parentFragment as? AddCardListener ?: activity as? AddCardListener
 
         binding.buttonAdd.setOnClickListener {
             val name = binding.editTextName.text.toString()
             val category = binding.editTextCategory.text.toString()
-            val cost = binding.editTextcost.text.toString()
+            val cost = binding.editTextCost.text.toString()
             val image = binding.editTextImage.text.toString()
+            val info = binding.editTextInfo.text.toString()
 
-            if (name.isNotEmpty() && category.isNotEmpty() && cost.isNotEmpty() && image.isNotEmpty()) {
-                val newArma = Arma(name, category, cost, image)
+            if (name.isNotEmpty() && category.isNotEmpty() &&
+                cost.isNotEmpty() && image.isNotEmpty()
+            ) {
+                val newArma = Arma(name, category, cost, image, info)
                 listener?.onCardAdded(newArma)
                 dismiss()
             }
@@ -47,5 +50,14 @@ class AddCardFragment : DialogFragment() {
         binding.buttonCancel.setOnClickListener {
             dismiss()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        dialog?.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
     }
 }

@@ -1,30 +1,69 @@
-# Armería
+# Armería - Aplicación Android
 
-Aplicación de Android que muestra una lista de armas y permite realizar operaciones CRUD (Crear, Leer, Actualizar, Borrar) sobre ellas.
+Aplicación para gestión y visualización de armas desarrollada en Kotlin para Android.
 
-## Características
+## 📱 Características
+- **Login de usuarios**: Sistema de autenticación con credenciales predefinidas
+- **Catálogo de armas**: Listado completo con imágenes y detalles
+- **CRUD completo**: Crear, Leer, Actualizar y Eliminar armas
+- **Navegación intuitiva**: Bottom Navigation y Navigation Drawer (comparten destinos)
+- **Perfil de usuario**: Información personal con estadísticas
+- **Diálogos interactivos**: Para añadir y editar armas
 
-*   **Visualización de armas**: muestra una lista de armas en un `RecyclerView` horizontal.
-*   **Añadir arma**: permite añadir una nueva arma a través de un `DialogFragment`.
-*   **Editar arma**: permite editar un arma existente a través de un `DialogFragment`.
-*   **Borrar arma**: permite borrar un arma de la lista.
+## 🧭 Navegación y Drawer (nota importante)
+- El `Navigation Drawer` y el `BottomNavigationView` comparten los mismos destinos principales (Inicio / Perfil / Ajustes) para mantener coherencia de navegación.
+- Cambio reciente: `settingsFragment` (Ajustes) **ya no** está declarado como destino top-level en `AppBarConfiguration` (ver `MainActivity.kt`).
+  - Consecuencia: al navegar a **Ajustes** ahora aparecerá la flecha de retroceso en la AppBar y la navegación considerará ese destino como no top-level.
+  - Razón: los items del menú de opciones (`menu_settings`, `menu_about`) deben actuar como destinos no top-level según los requisitos del ejercicio; por eso `settingsFragment` se ha removido del conjunto top-level.
+- Logout sigue accesible desde Drawer y desde el menú de opciones y redirige a `LoginActivity`.
 
-## Implementación
+## 📂 Estructura del Proyecto
+com/example/armeria/
+├── MainActivity.kt # Actividad principal
+├── LoginActivity.kt # Pantalla de login
+├── HomeFragment.kt # Listado de armas
+├── DetailFragment.kt # Detalles de arma
+├── ProfileFragment.kt # Perfil de usuario
+├── adapter/ # Adaptadores RecyclerView
+├── controller/ # Controladores de lógica
+├── dao/ # Objetos de acceso a datos
+├── models/ # Modelos de datos
+├── objects_models/ # Repositorios y sesión
+└── dialogs/ # Diálogos personalizados
 
-### Componentes principales
+## 🚀 Instalación
+1. Clona el repositorio
+2. Abre el proyecto en Android Studio
+3. Sincroniza las dependencias de Gradle
+4. Ejecuta en un emulador o dispositivo con Android 7.0+
 
-*   **`MainActivity.kt`**: la actividad principal de la aplicación. Contiene el `RecyclerView` y el botón para añadir nuevas armas. Se comunica con el `Controller` para gestionar los datos.
-*   **`Controller.kt`**: se encarga de la lógica de negocio. Gestiona la lista de armas y se comunica con el `Adapter` del `RecyclerView`.
-*   **`AdapterArma.kt`**: adaptador para el `RecyclerView` que muestra la lista de armas.
-*   **`AddCardFragment.kt`**: `DialogFragment` que se usa para añadir una nueva arma.
-*   **`EditCardFragment.kt`**: `DialogFragment` que se usa para editar un arma existente.
+## 🔑 Credenciales de Prueba
+Usuario: admin
+Contraseña: 1234
 
-### Uso de `DialogFragment`
+Usuario: usuario
+Contraseña: 0000
 
-Para las operaciones de añadir y editar se usan `DialogFragment`. Esto permite mostrar una ventana de diálogo sobre la actividad principal sin interrumpir el ciclo de vida de la misma.
+## 📖 Uso de la Aplicación
+1. **Login**: Introduce tus credenciales
+2. **Explorar**: Navega por el catálogo de armas
+3. **Añadir**: Usa el botón flotante (+) para crear nuevas armas
+4. **Editar/Eliminar**: Toca los botones en cada tarjeta
+5. **Detalles**: Haz clic en cualquier arma para ver información completa
+6. **Perfil**: Accede a tu información desde el menú lateral
 
-La comunicación entre los `DialogFragment` y la `MainActivity` se realiza a través de interfaces, lo que permite un diseño desacoplado y reutilizable.
+## 🔧 Configuración Técnica
+- **compileSdkVersion**: 36
+- **minSdkVersion**: 24
+- **targetSdkVersion**: 36
+- **ViewBinding**: Habilitado
+- **SafeArgs**: Configurado para navegación segura
 
-### View Binding
+## 📚 Dependencias Principales
+- androidx.navigation:navigation-fragment-ktx
+- com.github.bumptech.glide:glide
+- com.google.android.material:material
+- androidx.constraintlayout:constraintlayout
 
-Se utiliza View Binding para acceder a las vistas de los layouts de una forma segura y concisa.
+## 👤 Autor
+**Carlos MG**

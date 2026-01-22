@@ -18,17 +18,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/btn_secondary"
-            app:boxStrokeColor="@color/gray"
-            app:hintTextColor="@color/gray">
+            app:boxBackgroundColor="@color/btn_secondary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre del arma"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textColor="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -36,17 +33,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/btn_secondary"
-            app:boxStrokeColor="@color/gray"
-            app:hintTextColor="@color/gray">
+            app:boxBackgroundColor="@color/btn_secondary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Categoría"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textColor="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -54,18 +48,29 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/btn_secondary"
-            app:boxStrokeColor="@color/gray"
-            app:hintTextColor="@color/gray">
+            app:boxBackgroundColor="@color/btn_secondary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Coste"
-                android:inputType="numberDecimal"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textColor="@color/white"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="@color/btn_secondary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="URL de la imagen"
+                android:textColor="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,18 +78,16 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/btn_secondary"
-            app:boxStrokeColor="@color/gray"
-            app:hintTextColor="@color/gray">
+            app:boxBackgroundColor="@color/btn_secondary">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_image"
+                android:id="@+id/edit_text_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="URL de la imagen"
-                android:inputType="textUri"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:hint="Información extra"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:textColor="@color/white"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -97,21 +100,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                android:text="Guardar"
                 android:textColor="@color/white"
-                app:cornerRadius="14dp"
-                app:backgroundTint="@color/accent" />
+                android:text="Guardar"
+                app:backgroundTint="@color/accent"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_cancel"
                 android:layout_width="0dp"
+                android:layout_marginLeft="8dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cancelar"
                 android:textColor="@color/white"
-                app:cornerRadius="14dp"
-                app:backgroundTint="@color/btn_secondary" />
+                app:backgroundTint="@color/btn_secondary"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
