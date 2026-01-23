@@ -18,6 +18,8 @@ Aplicación para gestión y visualización de armas desarrollada en Kotlin para 
 - Logout sigue accesible desde Drawer y desde el menú de opciones y redirige a `LoginActivity`.
 
 ## Estructura del Proyecto
+
+```text
 com/example/armeria/
 ├── MainActivity.kt        # Actividad principal
 ├── LoginActivity.kt       # Pantalla de login
@@ -30,6 +32,7 @@ com/example/armeria/
 ├── models/                # Modelos de datos
 ├── objects_models/        # Repositorios y sesión
 └── dialogs/               # Diálogos personalizados
+```
 
 ## Instalación
 1. Clona el repositorio
